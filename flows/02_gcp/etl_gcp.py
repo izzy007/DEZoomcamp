@@ -14,7 +14,7 @@ def fetch(dataset_url:str)->pd.DataFrame:
     df=pd.read_csv(dataset_url)
     return df
 
-@task()
+@task(log_prints=True)
 def clean(df=pd.DataFrame)->pd.DataFrame:
     df["lpep_pickup_datetime"]=pd.to_datetime(df["lpep_pickup_datetime"])
     df["lpep_dropoff_datetime"]=pd.to_datetime(df["lpep_dropoff_datetime"])
@@ -23,7 +23,7 @@ def clean(df=pd.DataFrame)->pd.DataFrame:
     print(f"rows: {len(df)}")
     return df
 
-@task()
+@task(log_prints=True)
 def write_local(df :pd.DataFrame,color:str,dataset_file:str) ->Path:
     """write DF locally as parquet file"""
     path=Path(f"data/{color}/{dataset_file}.parquet")
@@ -39,7 +39,7 @@ def write_gcs(path:Path)->None:
 
 
 
-@flow(name="MainFlow")
+@flow(name="MainFlow",log_prints=True)
 def etl_web_gcs(color:str,month:int,year:int) ->None:
     '''The main ETL function'''   
     dataset_file=f"{color}_tripdata_{year}-{month:02}"
@@ -50,12 +50,13 @@ def etl_web_gcs(color:str,month:int,year:int) ->None:
     df_clean=clean(df)
     
     path=write_local(df,color,dataset_file)
+    print(f"length:{len(df)}")
     write_gcs(path)
 
 
 if __name__=='__main__':
     color ="green"
-    year = 2019
+    year = 2020
     month =11
     etl_web_gcs(color,month,year)
 

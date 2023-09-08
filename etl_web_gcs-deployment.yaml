@@ -3,7 +3,7 @@
 ###
 name: de-hw-4
 description: The main ETL function
-version: 240adc686906ee9d07e8d73c4d1ba40a
+version: 9bdc6c4a40a11d765b00daf247174b56
 # The work queue that will handle this deployment's runs
 work_queue_name: default-agent-pool
 work_pool_name: default-agent-pool
@@ -64,5 +64,5 @@ parameter_openapi_schema:
   - month
   - year
   definitions: null
-timestamp: '2023-09-08T16:50:05.402197+00:00'
+timestamp: '2023-09-08T19:16:23.722119+00:00'
 triggers: []
