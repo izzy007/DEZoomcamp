@@ -1,0 +1,69 @@
+###
+### A complete description of a Prefect Deployment for flow 'MainFlow'
+###
+name: github_deploy
+description: The main ETL function
+version: ea8ec60e4418eb9f9b3f917441ff95e1
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: default-agent-pool
+tags:
+- homework
+parameters: {}
+schedule: null
+is_schedule_active: true
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: MainFlow
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: 863fb4a2-847e-4c74-b202-a28662f7055b
+  _block_document_name: anonymous-5d46b220-7d41-4fbe-aa6e-576a8161f72d
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage:
+  repository: https://github.com/izzy007/DEZoomcamp.git
+  reference: root
+  access_token: '**********'
+  include_git_objects: true
+  _block_document_id: 8037740a-1e45-49fd-8c8f-6b681bd7bf0b
+  _block_document_name: zoomcamp
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: etl_gcp.py:etl_web_gcs
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    color:
+      title: color
+      position: 0
+      type: string
+    month:
+      title: month
+      position: 1
+      type: integer
+    year:
+      title: year
+      position: 2
+      type: integer
+  required:
+  - color
+  - month
+  - year
+  definitions: null
+timestamp: '2023-09-07T19:41:07.680852+00:00'
+triggers: []
