@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: staging
+    database: certain-grammar-396219
+    schema: trips_data_all
+
+
+    tables:
+      - name: green_trips
+      - name: yellow_trips
+    
